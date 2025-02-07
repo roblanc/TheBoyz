@@ -1,31 +1,94 @@
 body {
-    font-family: 'Arial', sans-serif; /* Modern, clean font */
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa; /* Very light grey background - base paper color */
+    background-color: #f8f9fa; /* Default light grey */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-
-    /* Dotted paper background using radial gradient */
-    background-image: repeating-radial-gradient(
-        circle at 5px 5px, /* Adjust dot position for spacing */
-        rgba(0, 0, 0, 0.15) 0px, /* Dot color and opacity */
-        rgba(0, 0, 0, 0.15) 1px,  /* Dot size */
+    background-image: repeating-radial-gradient( /* Default dotted paper */
+        circle at 5px 5px,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
         transparent 1px,
-        transparent 10px     /* Dot spacing - adjust this value */
+        transparent 10px
     );
-    background-size: 12px 12px; /* Adjust for dot density */
+    background-size: 12px 12px;
+}
+
+/* Rastafarian background class */
+body.rastafarian-bg {
+    background-image: url('https://c8.alamy.com/comp/2f551b6/rasta-weed-seamless-pattern-vector-rastafarian-cannabis-leavesillustration-marijuana-background-2f551b6.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-color: #222;
+    color: white;
+}
+
+/* David Lynch inspired background class - Colorful Pill Pattern */
+body.david-lynch-bg {
+    background-color: #222;
+    color: #f0f0f0;
+    background-image: repeating-radial-gradient(circle at 25px 25px, rgba(255,102,204,0.2) 0px, rgba(255,102,204,0.2) 6px, transparent 6px, transparent 50px), repeating-radial-gradient(circle at 75px 75px, rgba(0,204,255,0.2) 0px, rgba(0,204,255,0.2) 6px, transparent 6px, transparent 50px), repeating-radial-gradient(circle at 25px 75px, rgba(255,255,102,0.2) 0px, rgba(255,255,102,0.2) 6px, transparent 6px, transparent 100px), repeating-radial-gradient(circle at 75px 25px, rgba(153,255,153,0.2) 0px, rgba(153,255,153,0.2) 6px, transparent 6px, transparent 100px);
+    background-size: 100px 100px;
+    background-position: 0 0, 25px 25px, 25px 25px, 25px 25px;
+}
+
+
+/* Beldo background - Text Pattern */
+body.beldo-bg {
+    background-color: #f8f9fa; /* Match default background color */
+    color: #aaa; /* Light grey text color */
+    background-image: repeating-linear-gradient(0deg,
+        transparent 0px, transparent 2px,
+        rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 3px), /* faint lines */
+    repeating-linear-gradient(90deg,
+        transparent 0px, transparent 2px,
+        rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 3px),
+    repeating-linear-gradient(45deg, transparent 0%, transparent 10%, rgba(0,0,0,0.05) 10%, rgba(0,0,0,0.05) 20%), /* Diagonal lines for text placement */
+    repeating-linear-gradient(-45deg, transparent 0%, transparent 10%, rgba(0,0,0,0.05) 10%, rgba(0,0,0,0.05) 20%),
+    linear-gradient(to bottom right, #f8f9fa 50%, transparent 50%), /* Faint shading */
+    linear-gradient(to top left, #f8f9fa 50%, transparent 50%),
+    linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, transparent 50%), /* Subtle overlay */
+    linear-gradient(to right, rgba(255,255,255,0.1) 0%, transparent 50%),
+    linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.02) 100%), /* Shadow effect */
+    linear-gradient(to right, transparent 50%, rgba(0,0,0,0.02) 100%);
+    background-blend-mode: multiply, multiply, normal, normal, overlay, overlay, screen, screen, darken, darken; /* Blend modes for subtle effects */
+    background-size: cover, cover, 400px 400px, 400px 400px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    position: relative;
+}
+
+body.beldo-bg::before {
+    content: 'MeditatiiAnunturi.ro MeditatiiAnunturi.ro MeditatiiAnunturi.ro MeditatiiAnunturi.ro MeditatiiAnunturi.ro '; /* Repeated text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 2.5em; /* Adjust text size */
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.04); /* Very faint text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 1.8em; /* Adjust line spacing */
+    letter-spacing: 0.3em; /* Adjust letter spacing */
+    white-space: pre-line; /* Preserve line breaks */
+    text-align: center;
+    opacity: 0.8; /* Adjust overall text opacity */
+    mix-blend-mode: overlay; /* Blend with background */
+    pointer-events: none; /* Make sure it doesn't interfere with clicks */
 }
 
 
 .container {
-    width: 90%; /* Wider container */
-    max-width: 700px; /* Increased max width */
+    width: 90%;
+    max-width: 700px;
     background-color: #fff;
-    border-radius: 15px; /* More rounded container corners */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Softer, larger shadow */
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -34,17 +97,17 @@ body {
 .chatbot-selector {
     display: flex;
     justify-content: space-around;
-    background-color: #e9ecef; /* Light grey chatbot selector background */
-    padding: 1.2em 1em; /* Adjusted padding */
-    border-bottom: 1px solid #ddd; /* Subtle border */
+    background-color: #e9ecef;
+    padding: 1.2em 1em;
+    border-bottom: 1px solid #ddd;
 }
 
 .chatbot-button {
-    padding: 0.7em 1.5em; /* Adjusted button padding */
+    padding: 0.7em 1.5em;
     border: none;
-    border-radius: 25px; /* Bubble button shape */
-    background-color: #fff; /* White button background */
-    color: #495057; /* Dark grey text color */
+    border-radius: 25px;
+    background-color: #fff;
+    color: #495057;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     display: flex;
@@ -66,8 +129,8 @@ body {
 
 
 .chatbot-icon {
-    width: 48px; /* Increased icon size in buttons */
-    height: 48px; /* Increased icon size in buttons */
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #fff;
@@ -102,12 +165,13 @@ body {
 }
 
 .message.user {
-    background-color: #dcf8c6;
+    background-color: green; /* Green background for user messages */
+    color: black;        /* Black text for user messages */
     align-self: flex-end;
     border-radius: 20px 20px 0 20px;
     margin-right: 0.5em;
     margin-left: 2.5em;
-    border: 1px solid #c6d9b3;
+    border: 1px solid #c6d9b3; /* Keep border style, adjust color if needed */
 }
 
 .message.bot {
@@ -140,14 +204,14 @@ body {
 
 .bot.unde::before {
     background-image: url('unde.jpg');
-    width: 50px; /* Increased icon size in message bubbles */
-    height: 50px; /* Increased icon size in message bubbles */
+    width: 50px;
+    height: 50px;
 }
 
 .bot.marius::before {
     background-image: url('marius.jpg');
-    width: 50px; /* Increased icon size in message bubbles */
-    height: 50px; /* Increased icon size in message bubbles */
+    width: 50px;
+    height: 50px;
 }
 
 

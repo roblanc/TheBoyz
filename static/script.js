@@ -1,28 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
     const beldoBtn = document.getElementById('beldo-btn');
     const undeBtn = document.getElementById('unde-btn');
-    const mariusBtn = document.getElementById('marius-btn'); // **New: Marius button**
+    const mariusBtn = document.getElementById('marius-btn');
     const chatArea = document.getElementById('chat-area');
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     const historyDiv = document.getElementById('history');
-    let currentChatbot = 'beldo'; // Default chatbot is Beldo
+    let currentChatbot = 'beldo';
+    const body = document.body;
 
-    // Initial greetings for each chatbot
+    // Initial greetings
     const initialGreetings = {
         beldo: "I am Beldo zis si Mama Bebe... pe tine cum te numesti?",
-        unde: "Nu sunt aryan, sunt pariah, nu paria. Vreau să plec în Spania, spirit de rastafarian. Tu ce te numesti?", // **Updated Unde greeting**
-        marius: "Sa pronunt numele Jizzy Boy Lemuriano este activitatea care imi place! Tie ce-ti place sa numesti ca faci?" // **Updated Marius greeting**
+        unde: "Nu sunt aryan, sunt pariah, nu paria. Vreau să plec în Spania, spirit de rastafarian. Tu ce te numesti?",
+        marius: "Sa pronunt numele Jizzy Boy Lemuriano este activitatea care imi place! Tie ce-ti place sa numesti ca faci?"
     };
 
-    // Function to add message to chat history
+    // Function to add message
     function addMessage(message, sender, isBot = false) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
-        messageDiv.classList.add(sender); // 'user' or 'bot'
+        messageDiv.classList.add(sender);
         if (isBot) {
-            messageDiv.classList.add('bot'); // Keep the general 'bot' class
-            if (currentChatbot === 'marius') { /* New: Add 'marius' class if current chatbot is Marius */
+            messageDiv.classList.add('bot');
+            if (currentChatbot === 'marius') {
                 messageDiv.classList.add('marius');
             }
             messageDiv.innerHTML = `<div class='chatbot-name'>${currentChatbot.charAt(0).toUpperCase() + currentChatbot.slice(1)}:</div><div class='message-text'>${message}</div>`;
@@ -30,10 +31,10 @@ document.addEventListener('DOMContentLoaded', function() {
             messageDiv.textContent = message;
         }
         historyDiv.appendChild(messageDiv);
-        chatArea.scrollTop = chatArea.scrollHeight; // Scroll to bottom
+        chatArea.scrollTop = chatArea.scrollHeight;
     }
 
-    // Function to handle sending message
+    // Function to send message
     function sendMessage() {
         const message = userInput.value.trim();
         if (!message) return;
@@ -41,20 +42,20 @@ document.addEventListener('DOMContentLoaded', function() {
         addMessage(message, 'user');
         userInput.value = '';
 
-        fetch('/chat', { // Changed route to '/chat'
+        fetch('/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 message: message,
-                chatbot_name: currentChatbot // Send chatbot_name in the request
+                chatbot_name: currentChatbot
             })
         })
         .then(response => response.json())
         .then(data => {
             if (data.response) {
-                addMessage(data.response, 'bot', true); // Indicate it's a bot message
+                addMessage(data.response, 'bot', true);
             } else {
                 addMessage('Error: Could not get response.', 'bot', true);
             }
@@ -65,10 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listener for send button
+    // Send button event listener
     sendBtn.addEventListener('click', sendMessage);
 
-    // Event listener for Enter key in input field
+    // Enter key event listener
     userInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             sendMessage();
@@ -80,31 +81,40 @@ document.addEventListener('DOMContentLoaded', function() {
         currentChatbot = 'beldo';
         beldoBtn.classList.add('active');
         undeBtn.classList.remove('active');
-        mariusBtn.classList.remove('active'); // **New: Deactivate Marius button**
-        historyDiv.innerHTML = ''; // Clear chat history
-        addMessage(initialGreetings.beldo, 'bot', true); // Add Beldo's greeting
+        mariusBtn.classList.remove('active');
+        body.classList.remove('rastafarian-bg');
+        body.classList.remove('david-lynch-bg');
+        body.classList.add('beldo-bg'); // Add beldo-bg for Beldo
+        historyDiv.innerHTML = '';
+        addMessage(initialGreetings.beldo, 'bot', true);
     });
 
     undeBtn.addEventListener('click', function() {
         currentChatbot = 'unde';
         undeBtn.classList.add('active');
         beldoBtn.classList.remove('active');
-        mariusBtn.classList.remove('active'); // **New: Deactivate Marius button**
-        historyDiv.innerHTML = ''; // Clear chat history
-        addMessage(initialGreetings.unde, 'bot', true); // Add Unde's greeting
+        mariusBtn.classList.remove('active');
+        body.classList.add('rastafarian-bg');
+        body.classList.remove('david-lynch-bg');
+        body.classList.remove('beldo-bg'); // Remove beldo-bg
+        historyDiv.innerHTML = '';
+        addMessage(initialGreetings.unde, 'bot', true);
     });
 
-    mariusBtn.addEventListener('click', function() { // **New: Marius button click handler**
+    mariusBtn.addEventListener('click', function() {
         currentChatbot = 'marius';
         mariusBtn.classList.add('active');
         beldoBtn.classList.remove('active');
-        undeBtn.classList.remove('active'); // **Deactivate Unde button**
-        historyDiv.innerHTML = ''; // Clear chat history
-        addMessage(initialGreetings.marius, 'bot', true); // Add Marius's greeting
+        undeBtn.classList.remove('active');
+        body.classList.remove('rastafarian-bg');
+        body.classList.add('david-lynch-bg'); // Add david-lynch-bg for Marius
+        body.classList.remove('beldo-bg'); // Remove beldo-bg
+        historyDiv.innerHTML = '';
+        addMessage(initialGreetings.marius, 'bot', true);
     });
 
-
-    // Set Beldo as active chatbot and display initial greeting on page load
+    // Initial chatbot and greeting
     beldoBtn.classList.add('active');
-    addMessage(initialGreetings.beldo, 'bot', true); // Initial greeting when page loads
+    body.classList.add('beldo-bg'); // Set Beldo background on load
+    addMessage(initialGreetings.beldo, 'bot', true);
 });
