@@ -7,4 +7,5 @@ requires-python = ">=3.11"
 dependencies = [
     "flask>=3.1.0",
     "transformers>=4.48.2",
+    "flask-cors = "^5.0.0" # Add flask-cors here
 ]
