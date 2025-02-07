@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const initialGreetings = {
         beldo: "I am Beldo zis si Mama Bebe... pe tine cum te numesti?",
         unde: "Nu sunt aryan, sunt pariah, nu paria. Vreau să plec în Spania, spirit de rastafarian. Tu ce te numesti?", // **Updated Unde greeting**
-        marius: "Sa pronunt numele Jizzy Boy Lemuriano este activitatea care imi place! Tie ce-ti place sa numesti ca faci?"
+        marius: "Sa pronunt numele Jizzy Boy Lemuriano este activitatea care imi place! Tie ce-ti place sa numesti ca faci?" // **Updated Marius greeting**
     };
 
     // Function to add message to chat history
