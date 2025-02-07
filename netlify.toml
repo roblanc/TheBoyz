@@ -1,0 +1,9 @@
+[build]
+  functions = "netlify/functions" # Path to your functions directory
+  publish = "static"          # Directory with your static files (HTML, CSS, JS, images)
+
+[dev]
+  functions = "netlify/functions" # Functions directory for local dev server
+  framework = "#custom"
+  command = "python netlify/functions/handler.py"
+  port = 5000
