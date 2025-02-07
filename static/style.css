@@ -2,26 +2,21 @@ body {
     font-family: 'Arial', sans-serif; /* Modern, clean font */
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa; /* Very light grey background */
+    background-color: #f8f9fa; /* Very light grey background - base paper color */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Pixel art baby background */
-    background-image: url('baby1.png'), url('baby2.png'), url('baby3.png'); /* Add your baby pixel art images here */
-    background-repeat: repeat, repeat, repeat;
-    background-size: 60px, 80px, 70px; /* Adjust baby sizes as needed */
-    background-position: 20% 10%, 50% 50%, 80% 90%; /* Adjust baby positions if needed */
-    animation: fallingBabies 20s linear infinite; /* Optional: Add animation for falling effect */
-}
 
-@keyframes fallingBabies { /* Optional animation keyframes */
-    0% {
-        background-position: 20% 105%, 50% 150%, 80% 200%;
-    }
-    100% {
-        background-position: 20% -20%, 50% -30%, 80% -40%;
-    }
+    /* Dotted paper background using radial gradient */
+    background-image: repeating-radial-gradient(
+        circle at 5px 5px, /* Adjust dot position for spacing */
+        rgba(0, 0, 0, 0.15) 0px, /* Dot color and opacity */
+        rgba(0, 0, 0, 0.15) 1px,  /* Dot size */
+        transparent 1px,
+        transparent 10px     /* Dot spacing - adjust this value */
+    );
+    background-size: 12px 12px; /* Adjust for dot density */
 }
 
 
@@ -71,8 +66,8 @@ body {
 
 
 .chatbot-icon {
-    width: 48px; /* **Increased icon size in buttons** */
-    height: 48px; /* **Increased icon size in buttons** */
+    width: 48px; /* Increased icon size in buttons */
+    height: 48px; /* Increased icon size in buttons */
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #fff;
@@ -132,9 +127,9 @@ body {
     display: block;
     position: absolute;
     top: 0px;
-    left: -55px; /* **Adjusted for larger icons** */
-    width: 50px; /* **Increased icon size in message bubbles** */
-    height: 50px; /* **Increased icon size in message bubbles** */
+    left: -55px; /* Adjusted for larger icons */
+    width: 50px; /* Increased icon size in message bubbles */
+    height: 50px; /* Increased icon size in message bubbles */
     border-radius: 50%;
     background-image: url('beldo.jpg');
     background-size: cover;
@@ -145,14 +140,14 @@ body {
 
 .bot.unde::before {
     background-image: url('unde.jpg');
-    width: 50px; /* **Increased icon size in message bubbles** */
-    height: 50px; /* **Increased icon size in message bubbles** */
+    width: 50px; /* Increased icon size in message bubbles */
+    height: 50px; /* Increased icon size in message bubbles */
 }
 
 .bot.marius::before {
     background-image: url('marius.jpg');
-    width: 50px; /* **Increased icon size in message bubbles** */
-    height: 50px; /* **Increased icon size in message bubbles** */
+    width: 50px; /* Increased icon size in message bubbles */
+    height: 50px; /* Increased icon size in message bubbles */
 }
 
 
