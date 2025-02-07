@@ -1,91 +1,36 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prietenii Chat</title>
-    <link rel="stylesheet" href="static/styles.css">
-    <script>
-        let currentChatbot = "Baldo"; // Default chatbot persona
-
-        function selectChatbot(chatbotName) {
-            currentChatbot = chatbotName;
-            document.getElementById("chatbotNameDisplay").textContent = chatbotName + " Chat";
-            // You can add more UI feedback here if desired, e.g., highlighting the selected button
-        }
-
-        async function sendMessage() {
-            let user_input = document.getElementById("user_input").value;
-            let chatbot = currentChatbot;
-
-            if (!user_input.trim()) {
-                return;
-            }
-
-            let response = await fetch("/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ user_input: user_input, chatbot: chatbot })
-            });
-
-            let data = await response.json();
-            let chatOutput = document.getElementById("chat_output");
-            if (response.ok) {
-                chatOutput.innerHTML += `
-                    <div class="message-container user-message">
-                        <div class="message-bubble">
-                            <b>You:</b> ${user_input}
-                        </div>
-                    </div>`;
-                chatOutput.innerHTML += `
-                    <div class="message-container bot-message">
-                        <div class="message-bubble">
-                            <b>${chatbot}:</b> ${data.response}
-                        </div>
-                    </div>`;
-            } else {
-                chatOutput.innerHTML += `
-                    <div class="message-container error-message">
-                        <div class="message-bubble">
-                            <b>Error:</b> Something went wrong. Please try again. (${data.response})
-                        </div>
-                    </div>`;
-            }
-            document.getElementById("user_input").value = "";
-            chatOutput.scrollTop = chatOutput.scrollHeight;
-        }
-
-        function handleEnter(event) {
-            if (event.key === "Enter") {
-                event.preventDefault(); // Prevent default form submission
-                sendMessage();
-            }
-        }
-    </script>
+    <title>Prietenii Bot powered by Mama BebeV1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="chatbot-container">
-        <div class="chatbot-header">
-            <h1 id="chatbotNameDisplay">Prietenii Chat</h1>
-        </div>
-
-        <div class="persona-buttons">
-            <button class="persona-button" onclick="selectChatbot('Baldo')">
-                <img src="static/baldo.jpg" alt="Baldo Persona">
-                <div class="persona-name">Baldo</div>
+    <div class="container">
+        <div class="chatbot-selector">
+            <button id="beldo-btn" class="chatbot-button active">
+                <img src="{{ url_for('static', filename='beldo.jpg') }}" alt="Beldo" class="chatbot-icon">
+                <span>Beldo</span>
             </button>
-            <button class="persona-button" onclick="selectChatbot('Unde')">
-                <img src="static/unde.jpg" alt="Unde Persona">
-                <div class="persona-name">Unde</div>
+            <button id="unde-btn" class="chatbot-button">
+                <img src="{{ url_for('static', filename='unde.jpg') }}" alt="Unde" class="chatbot-icon">
+                <span>Unde</span>
+            </button>
+            <button id="marius-btn" class="chatbot-button">
+                <img src="{{ url_for('static', filename='marius.jpg') }}" alt="Marius" class="chatbot-icon">
+                <span>Marius</span>
             </button>
         </div>
-
-        <div id="chat_output" class="chat-output"></div>
-
-        <div class="chat-input-area">
-            <input type="text" id="user_input" placeholder="Type your message..." onkeydown="handleEnter(event)">
-            <button onclick="sendMessage()">Send</button>
+        <div id="chat-area" class="chat-area">
+            <div id="history" class="history">
+            </div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-btn">Send</button>
         </div>
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

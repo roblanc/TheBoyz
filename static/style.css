@@ -1,0 +1,210 @@
+body {
+    font-family: 'Arial', sans-serif; /* Modern, clean font */
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Very light grey background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Pixel art baby background */
+    background-image: url('baby1.png'), url('baby2.png'), url('baby3.png'); /* Add your baby pixel art images here */
+    background-repeat: repeat, repeat, repeat;
+    background-size: 60px, 80px, 70px; /* Adjust baby sizes as needed */
+    background-position: 20% 10%, 50% 50%, 80% 90%; /* Adjust baby positions if needed */
+    animation: fallingBabies 20s linear infinite; /* Optional: Add animation for falling effect */
+}
+
+@keyframes fallingBabies { /* Optional animation keyframes */
+    0% {
+        background-position: 20% 105%, 50% 150%, 80% 200%;
+    }
+    100% {
+        background-position: 20% -20%, 50% -30%, 80% -40%;
+    }
+}
+
+
+.container {
+    width: 90%; /* Wider container */
+    max-width: 700px; /* Increased max width */
+    background-color: #fff;
+    border-radius: 15px; /* More rounded container corners */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Softer, larger shadow */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatbot-selector {
+    display: flex;
+    justify-content: space-around;
+    background-color: #e9ecef; /* Light grey chatbot selector background */
+    padding: 1.2em 1em; /* Adjusted padding */
+    border-bottom: 1px solid #ddd; /* Subtle border */
+}
+
+.chatbot-button {
+    padding: 0.7em 1.5em; /* Adjusted button padding */
+    border: none;
+    border-radius: 25px; /* Bubble button shape */
+    background-color: #fff; /* White button background */
+    color: #495057; /* Dark grey text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    flex-direction: row;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chatbot-button:hover, .chatbot-button.active {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+.chatbot-button.active {
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+}
+
+
+.chatbot-icon {
+    width: 48px; /* **Increased icon size in buttons** */
+    height: 48px; /* **Increased icon size in buttons** */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+}
+
+
+.chat-area {
+    padding: 1.5em;
+    overflow-y: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.history {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+.message {
+    padding: 0.8em 1.2em;
+    border-radius: 20px;
+    margin-bottom: 0.6em;
+    word-wrap: break-word;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.message.user {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+    border-radius: 20px 20px 0 20px;
+    margin-right: 0.5em;
+    margin-left: 2.5em;
+    border: 1px solid #c6d9b3;
+}
+
+.message.bot {
+    background-color: #f0f0f0;
+    align-self: flex-start;
+    align-items: flex-start;
+    border-radius: 0 20px 20px 20px;
+    margin-left: 0.5em;
+    margin-right: 2.5em;
+    padding: 0.8em 1.2em;
+    position: relative;
+    border: 1px solid #e0e0e0;
+}
+
+.message.bot::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: -55px; /* **Adjusted for larger icons** */
+    width: 50px; /* **Increased icon size in message bubbles** */
+    height: 50px; /* **Increased icon size in message bubbles** */
+    border-radius: 50%;
+    background-image: url('beldo.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #fff;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+}
+
+.bot.unde::before {
+    background-image: url('unde.jpg');
+    width: 50px; /* **Increased icon size in message bubbles** */
+    height: 50px; /* **Increased icon size in message bubbles** */
+}
+
+.bot.marius::before {
+    background-image: url('marius.jpg');
+    width: 50px; /* **Increased icon size in message bubbles** */
+    height: 50px; /* **Increased icon size in message bubbles** */
+}
+
+
+.chatbot-name {
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 0.3em;
+    font-size: 0.95em;
+}
+
+
+.message-text {
+    font-size: 1em;
+    line-height: 1.4;
+    color: #212529;
+}
+
+
+.input-area {
+    padding: 1.2em 1.5em;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 0.7em 1em;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    margin-right: 0.8em;
+    font-size: 1em;
+}
+
+#send-btn {
+    padding: 0.7em 1.5em;
+    border: none;
+    border-radius: 25px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+#send-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+#send-btn:active {
+    transform: scale(0.98);
+}
