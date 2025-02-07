@@ -1,11 +1,20 @@
-[project]
+[tool.poetry] # Changed from [project] to [tool.poetry]
 name = "python-template"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
-requires-python = ">=3.11"
-dependencies = [
-    "flask>=3.1.0",
-    "transformers>=4.48.2",
-    "flask-cors = "^5.0.0" # Add flask-cors here
-]
+readme = "README.md"
+packages = [{include = "python_template"}]
+
+[tool.poetry.dependencies] # Changed from [dependencies] to [tool.poetry.dependencies]
+python = "^3.12"
+flask = "^3.1.0"
+transformers = "^4.48.2"
+flask-cors = "^5.0.0" # Add flask-cors here
+
+[tool.poetry.group.dev.dependencies]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
